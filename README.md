@@ -1,64 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Rese
+ある企業のグループ会社の飲食店予約サービス
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Alt text](image/home.png)
+## 作成した目的
+外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい。
 
-## About Laravel
+## 機能一覧
+### ユーザ画面
+- 会員登録
+- ログイン
+- ログアウト
+- ユーザ情報取得
+- ユーザお気に入り情報取得
+- ユーザ予約情報取得
+- 飲食店一覧取得
+- 飲食店詳細取得
+- 飲食店予約
+- 飲食店予約変更
+- 飲食店お気に入り追加
+- 飲食店お気に入り削除
+- エリア検索
+- ジャンル検索
+- 店名検索
+- コメント追加
+- コメント削除
+- コメント編集
+- ランダムソート
+- 評価順ソート
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 管理画面
+admin: 管理ユーザー  
+owner: 店舗ユーザー
+- ログイン(owner, admin)
+- ログアウト(owner, admin)
+- 飲食店一覧取得(owner, admin)
+- 飲食店詳細取得(owner, admin)
+- 飲食店情報変更(owner, admin)
+- 予約確認(owner, admin)
+- コメント確認(owner, admin)
+- コメント削除(admin)
+- 飲食店追加(owner, admin)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 飲食店追加方法
+csvファイルに店舗名、エリア、ジャンル、店舗概要、画像URLの順に記述する
+```
+"店舗名", "エリア", "ジャンル", "店舗概要", "画像URL"
+```
+- 項目はすべて必須
+- 店舗: 50文字以内
+- 地域: 「東京都」「大阪」「福岡」のみ
+- ジャンル: 「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のみ
+- 店舗概要: 400文字以内
+- 画像URL：jpeg、pngのみアップロード可能
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 使用技術（実行環境）
+- Laravel 9.x
+- Blade
+- tailwindcss
+- alpinejs
 
-## Learning Laravel
+## テーブル設計
+![Alt text](image/admins.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Alt text](image/comments.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Alt text](image/details.png)
 
-## Laravel Sponsors
+![Alt text](image/likes.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![Alt text](image/owners.png)
 
-### Premium Partners
+![Alt text](image/reservations.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![Alt text](image/restaurants.png)
 
-## Contributing
+![Alt text](image/users.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ER図
+![Alt text](image/ER_figure.drawio.png)
 
-## Code of Conduct
+## 環境構築
+### 開発環境構築
+プロジェクトフォルダ内で以下を実行
+```
+composer install
+```
+設定ファイルの作成と編集
+```
+cp .env.example .env
+php artisan key:generate
+php artisan config:clear
+```
+シンボリックリンクを設定する
+```
+php artisan storage:link
+```
+フロントエンドのビルド
+```
+npm install
+npm run dev
+```
+データベースの作成、データ挿入
+```
+php artisan migrate --seed
+```
+***
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 本番環境構築
+プロジェクトフォルダ内で以下を実行
+```
+composer install --no-dev
+```
+設定ファイルの作成と編集
+```
+cp .env.example .env
+php artisan key:generate
+php artisan config:clear
+```
+シンボリックリンクを設定する
+```
+php artisan storage:link
+```
+フロントエンドのビルド
+```
+npm install
+npm run build
+```
+データベースの作成
+```
+php artisan migrate
+```
