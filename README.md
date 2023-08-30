@@ -105,6 +105,21 @@ npm run dev
 php artisan migrate --seed
 ```
 ***
+### 管理画面ログイン情報
+#### 店舗ユーザー
+- email: owner1@example.com
+- password: password
+- email: owner2@example.com
+- password: password
+- email: owner3@example.com
+- password: password
+- email: owner4@example.com
+- password: password
+- email: owner5@example.com
+- password: password
+#### 管理者ユーザー
+- email: admin@example.com
+- password: password
 
 ### 本番環境構築
 プロジェクトフォルダ内で以下を実行
